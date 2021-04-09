@@ -9,14 +9,17 @@ import java.util.Comparator;
 
 public class TaskRegistry {
     ArrayList<Task> taskArrayList = new ArrayList<>();
+    FileReadWrite fileReadWrite = new FileReadWrite();
 
 
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException, ParseException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         TaskRegistry taskRegistry = new TaskRegistry();
-        //taskRegistry.fillWithTestData();
 
-        taskRegistry.ReadFromFile();
+
+        //taskRegistry.fillWithTestData();
+        taskRegistry.readFile();
+        //taskRegistry.ReadFromFile();
         // taskRegistry.printData();
         taskRegistry.sortByEndDate();
         taskRegistry.changeDoingStatus("doing", 1);
@@ -26,28 +29,22 @@ public class TaskRegistry {
 
     public void addTask(Task task) {
         taskArrayList.add(task);
-        WriteObjectToFile(taskArrayList);
+       // WriteObjectToFile(taskArrayList);
+        fileReadWrite.writeToFile(taskArrayList);
+
+    }
+    public void removeTask(int index){
+        taskArrayList.remove(index);
+        fileReadWrite.writeToFile(taskArrayList);
 
     }
 
+private void readFile() throws IOException, ClassNotFoundException {
+        taskArrayList.clear();
+    taskArrayList.addAll(fileReadWrite.ReadFromFile());
+}
 
-    public void WriteObjectToFile(Object serObj) {
-
-        try {
-
-            FileOutputStream fileOut = new FileOutputStream("objectFile.txt");
-            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
-            objectOut.writeObject(serObj);
-            objectOut.close();
-            //System.out.println("The Object  was succesfully written to a file");
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
-
-    private void fillWithTestData() throws ParseException {
+    private void fillWithTestData()  {
         addTask(new Task("cleaning", "low", "clean your room", "cleaning", LocalDate.of(2021, 4, 8), LocalDate.of(2022, 4, 9)));
         addTask(new Task("cleaning", "high", "clean the bathroom", "cleaning", LocalDate.of(2022, 4, 8), LocalDate.of(2021, 4, 11)));
         addTask(new Task("exercise dog", "medium", "walk the dog", "exercise", LocalDate.of(2020, 4, 8), LocalDate.of(2021, 3, 1)));
@@ -88,7 +85,5 @@ public class TaskRegistry {
     private void changeDoingStatus(String status, int index){
         taskArrayList.get(index).setDoingStatus(status);
     }
-
-
 
 }
