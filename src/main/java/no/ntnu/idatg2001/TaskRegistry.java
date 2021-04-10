@@ -73,8 +73,9 @@ private void readFile() throws IOException, ClassNotFoundException {
     }
 
 
-    private void sortByStartDate(){
+    public void sortByStartDate(){
         taskArrayList.sort(Comparator.comparing(Task::getStartDate));
+        taskArrayList.forEach(s -> System.out.println(s.toString()));
 
     }
     private void sortByEndDate(){
