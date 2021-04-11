@@ -35,6 +35,7 @@ public class SecondaryController {
 
     @FXML
     private void switchToPrimary() throws IOException, ClassNotFoundException {
+        primaryController.updateList();
         primaryController.print();
         App.setRoot("primary");
     }
