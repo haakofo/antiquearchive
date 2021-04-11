@@ -15,8 +15,8 @@ import javafx.scene.input.InputMethodEvent;
 public class SecondaryController {
 
     TaskRegistry taskRegistry = new TaskRegistry();
-    ObservableList<String> priorityList = FXCollections.observableArrayList("High","Medium","Low");
-
+    ObservableList<String> priorityList = FXCollections.observableArrayList("High", "Medium", "Low");
+    PrimaryController primaryController = new PrimaryController();
     @FXML
     private TextField tf1;
 
@@ -34,11 +34,14 @@ public class SecondaryController {
     private DatePicker datePicker2;
 
     @FXML
-    private void switchToPrimary() throws IOException {
+    private void switchToPrimary() throws IOException, ClassNotFoundException {
+        primaryController.print();
         App.setRoot("primary");
     }
+
     @FXML
-    void setTask(ActionEvent event) {
+    void setTask(ActionEvent event) throws IOException, ClassNotFoundException {
+        taskRegistry.readFromFile();
 
         String title = tf1.getText();
         String description = tf2.getText();
@@ -46,12 +49,11 @@ public class SecondaryController {
         String priority = comboBox1.getValue();
         LocalDate startDate = datePicker1.getValue();
         LocalDate endDate = datePicker2.getValue();
-        taskRegistry.addTask(new Task(title,priority,description,category,startDate,endDate));
-        taskRegistry.sortByStartDate();
-       /* try {
+        taskRegistry.addTask(new Task(title, priority, description, category, startDate, endDate));
+        try {
             switchToPrimary();
         } catch (IOException e) {
             e.printStackTrace();
-        } */
+        }
     }
 }

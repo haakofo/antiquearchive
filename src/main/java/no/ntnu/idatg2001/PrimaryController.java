@@ -10,11 +10,18 @@ import javafx.scene.input.MouseEvent;
 public class PrimaryController {
     TaskRegistry taskRegistry = new TaskRegistry();
 
+
     @FXML
-    void sortTasksStart(MouseEvent event) throws ParseException {
-        /*
-        taskRegistry.fillWithTestData();
-        taskRegistry.sortByStartDate(); */
+    void sortTasksStart(MouseEvent event) throws ParseException, IOException, ClassNotFoundException {
+        taskRegistry.readFromFile();
+        taskRegistry.sortByStartDate();
+
+    }
+
+    @FXML
+    public void print() throws IOException, ClassNotFoundException {
+        taskRegistry.readFromFile();
+        taskRegistry.printData();
     }
 
     @FXML

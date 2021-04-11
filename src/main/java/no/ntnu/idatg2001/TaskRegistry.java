@@ -18,7 +18,7 @@ public class TaskRegistry {
 
 
         //taskRegistry.fillWithTestData();
-        taskRegistry.readFile();
+        taskRegistry.readFromFile();
         //taskRegistry.ReadFromFile();
         // taskRegistry.printData();
         taskRegistry.sortByEndDate();
@@ -38,13 +38,15 @@ public class TaskRegistry {
         fileReadWrite.writeToFile(taskArrayList);
 
     }
-
+/*
 private void readFile() throws IOException, ClassNotFoundException {
         taskArrayList.clear();
     taskArrayList.addAll(fileReadWrite.ReadFromFile());
 }
 
-    private void fillWithTestData()  {
+ */
+
+    public void fillWithTestData()  {
         addTask(new Task("cleaning", "low", "clean your room", "cleaning", LocalDate.of(2021, 4, 8), LocalDate.of(2022, 4, 9)));
         addTask(new Task("cleaning", "high", "clean the bathroom", "cleaning", LocalDate.of(2022, 4, 8), LocalDate.of(2021, 4, 11)));
         addTask(new Task("exercise dog", "medium", "walk the dog", "exercise", LocalDate.of(2020, 4, 8), LocalDate.of(2021, 3, 1)));
@@ -55,12 +57,12 @@ private void readFile() throws IOException, ClassNotFoundException {
 
     }
 
-    private void printData() {
+    public void printData() {
 
         taskArrayList.forEach(s -> System.out.println(s.toString()));
     }
 
-    private void ReadFromFile() throws IOException, ClassNotFoundException {
+    public void readFromFile() throws IOException, ClassNotFoundException {
         FileInputStream fileIn = new FileInputStream("objectFile.txt");
         ObjectInputStream objectIn = new ObjectInputStream(fileIn);
         //System.out.println(objectIn.readObject().toString());
@@ -68,7 +70,7 @@ private void readFile() throws IOException, ClassNotFoundException {
         objectIn.close();
         //tasks.forEach(s -> System.out.println(s.toString()));
         taskArrayList.clear();
-        tasks.forEach(this::addTask);
+        taskArrayList.addAll(tasks);
         tasks.clear();
     }
 
