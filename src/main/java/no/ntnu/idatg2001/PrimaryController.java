@@ -37,11 +37,9 @@ public class PrimaryController {
     } */
     @FXML
     private ObservableList<Task> getTasks(){
-        ObservableList<Task> tasksObservableList = FXCollections.observableArrayList();
-        taskRegistry.fillWithTestData();
 
-        for (Task task : taskRegistry.taskArrayList){
-        tasksObservableList.add(task);}
+        ObservableList<Task> tasksObservableList = FXCollections.observableArrayList();
+        tasksObservableList.addAll(taskRegistry.taskArrayList);
 
         return tasksObservableList;
     }
@@ -50,6 +48,13 @@ public class PrimaryController {
     public void print() throws IOException, ClassNotFoundException {
         taskRegistry.readFromFile();
         taskRegistry.printData();
+    }
+
+    @FXML
+    void updateTable(MouseEvent event) {
+        ObservableList<Task> getTasks1 = this.getTasks();
+        System.out.println("get tasks");
+        taskTableView.setItems(getTasks1);
     }
 
 

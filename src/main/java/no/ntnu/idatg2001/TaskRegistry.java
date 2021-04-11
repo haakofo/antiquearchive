@@ -8,7 +8,9 @@ import java.util.Comparator;
 
 
 public class TaskRegistry {
-    ArrayList<Task> taskArrayList = new ArrayList<>();
+
+    static ArrayList<Task> taskArrayList = new ArrayList<>();
+
     FileReadWrite fileReadWrite = new FileReadWrite();
 
 

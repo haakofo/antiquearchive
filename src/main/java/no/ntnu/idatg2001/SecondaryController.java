@@ -34,8 +34,7 @@ public class SecondaryController {
     private DatePicker datePicker2;
 
     @FXML
-    private void switchToPrimary() throws IOException, ClassNotFoundException {
-        primaryController.updateList();
+    private void switchToPrimary(ActionEvent event) throws IOException, ClassNotFoundException {
         primaryController.print();
         App.setRoot("primary");
     }
@@ -51,8 +50,9 @@ public class SecondaryController {
         LocalDate startDate = datePicker1.getValue();
         LocalDate endDate = datePicker2.getValue();
         taskRegistry.addTask(new Task(title, priority, description, category, startDate, endDate));
+
         try {
-            switchToPrimary();
+            switchToPrimary(event);
         } catch (IOException e) {
             e.printStackTrace();
         }
