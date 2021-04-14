@@ -40,6 +40,15 @@ public class TaskRegistry {
         fileReadWrite.writeToFile(taskArrayList);
 
     }
+
+    public boolean isEmpty()
+    {
+        if(taskArrayList.isEmpty())
+        {
+            return true;
+        } else
+            return false;
+    }
 /*
 private void readFile() throws IOException, ClassNotFoundException {
         taskArrayList.clear();

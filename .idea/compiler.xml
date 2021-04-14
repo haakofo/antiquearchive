@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="toDoList" />
+        <module name="IDATG1002_2021_group2" />
       </profile>
     </annotationProcessing>
   </component>

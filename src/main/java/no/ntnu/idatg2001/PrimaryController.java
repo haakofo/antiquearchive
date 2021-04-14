@@ -6,8 +6,7 @@ import java.time.LocalDate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
@@ -21,6 +20,7 @@ public class PrimaryController {
     @FXML private TableColumn<Task,String> taskPriority;
     @FXML private TableColumn<Task,LocalDate> taskStartDate;
     @FXML private TableColumn<Task, LocalDate> taskEndDate;
+    @FXML private TextField taskDelete;
     @FXML
     private TableView createTableView(){
 
@@ -79,6 +79,20 @@ public class PrimaryController {
             taskStartDate.setCellValueFactory(new PropertyValueFactory<Task, LocalDate>("StartDate"));
             taskEndDate.setCellValueFactory(new PropertyValueFactory<Task, LocalDate>("EndDate"));
             taskTableView.setItems(getTasks());
+    }
+
+    @FXML public void remove()
+    {
+        if(taskRegistry.isEmpty())
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("There is no tasks to remove!");
+            alert.show();
+        }
+
+        int removeIndex = Integer.parseInt(taskDelete.getText());
+        taskRegistry.removeTask(removeIndex);
+        taskTableView.setItems(getTasks());
     }
 
 
