@@ -26,7 +26,6 @@ public class TaskRegistry {
         //taskRegistry.ReadFromFile();
         // taskRegistry.printData();
         taskRegistry.sortByEndDate();
-        taskRegistry.changeDoingStatus("doing", 1);
         taskRegistry.printData();
     }
 
@@ -82,15 +81,7 @@ private void readFile() throws IOException, ClassNotFoundException {
     }
 
     public void readFromFile() throws IOException, ClassNotFoundException {
-        FileInputStream fileIn = new FileInputStream("objectFile.txt");
-        ObjectInputStream objectIn = new ObjectInputStream(fileIn);
-        //System.out.println(objectIn.readObject().toString());
-        ArrayList<Task> tasks = (ArrayList<Task>) objectIn.readObject();
-        objectIn.close();
-        //tasks.forEach(s -> System.out.println(s.toString()));
-        taskArrayList.clear();
-        taskArrayList.addAll(tasks);
-        tasks.clear();
+       taskArrayList = (ArrayList<Task>) FileReadWrite.readFromFile();
     }
 
     public List<Task> getReg()

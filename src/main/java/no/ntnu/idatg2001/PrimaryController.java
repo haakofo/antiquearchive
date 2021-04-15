@@ -80,6 +80,7 @@ public class PrimaryController {
             taskEndDate.setCellValueFactory(new PropertyValueFactory<Task, LocalDate>("EndDate"));
             taskTableView.refresh();
             taskTableView.setItems(getTasks());
+
     }
 
     @FXML public void remove()

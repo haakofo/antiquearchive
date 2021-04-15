@@ -1,39 +1,48 @@
 package no.ntnu.idatg2001;
 
 import java.io.*;
-import java.util.ArrayList;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.time.LocalDate;
+
+import java.util.List;
+
+import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
+
 
 public class FileReadWrite {
+    static Gson gson = new GsonBuilder()
+            .setPrettyPrinting()
+            .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+            .create();
+    public static void writeToFile(List<Task> arrayList){
 
+        try {
 
-public void writeToFile(ArrayList<Task> arrayList){
+            FileOutputStream fileOut = new FileOutputStream("objectFile.json");
 
-    try {
+            String json;
+            json = gson.toJson(arrayList);
 
-        FileOutputStream fileOut = new FileOutputStream("objectFile.txt");
-        ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
-        objectOut.writeObject(arrayList);
-        objectOut.close();
-        System.out.println("The Object  was succesfully written to a file");
+            fileOut.write(json.getBytes(StandardCharsets.UTF_8));
+            fileOut.close();
+            System.out.println("The Object  was succesfully written to a file");
 
-    } catch (Exception ex) {
-        ex.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
-}
 
-    public ArrayList<Task> ReadFromFile() throws IOException, ClassNotFoundException {
-        FileInputStream fileIn = new FileInputStream("objectFile.txt");
-        ObjectInputStream objectIn = new ObjectInputStream(fileIn);
-        //System.out.println(objectIn.readObject().toString());
-        ArrayList<Task> tasks = (ArrayList<Task>) objectIn.readObject();
-        objectIn.close();
-        //tasks.forEach(s -> System.out.println(s.toString()));
-        return tasks;
-        /*
-        taskArrayList.clear();
-        tasks.forEach(this::addTask);
-        tasks.clear();
-        */
+    public static List<Task> readFromFile() throws IOException, ClassNotFoundException {
+
+
+        Reader reader = Files.newBufferedReader(Paths.get("objectFile.json"));
+
+
+        return gson.fromJson(reader, new TypeToken<List<Task>>(){}.getType());
+
 
     }
 
