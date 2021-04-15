@@ -95,17 +95,4 @@ public class PrimaryController {
         taskTableView.setItems(getTasks());
     }
 
-    @FXML public void selectedRemoval()
-    {
-        Task t1 = taskTableView.getSelectionModel().getSelectedItem();
-    }
-
-    /*
-    @FXML
-    private void deleteButtonClicked() {
-        taskRegistry.getReg().removeAll(
-                taskRegistry.getSelectionModel().getSelectedItems()
-        );
-    }*/
-
 }
