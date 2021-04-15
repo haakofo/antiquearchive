@@ -1,10 +1,12 @@
 package no.ntnu.idatg2001;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 
 public class TaskRegistry {
@@ -40,6 +42,21 @@ public class TaskRegistry {
         fileReadWrite.writeToFile(taskArrayList);
 
     }
+
+    public void removeSelectedTask(Task taskRemove)
+    {
+        taskArrayList.remove(taskRemove);
+        fileReadWrite.writeToFile(taskArrayList);
+    }
+
+    public boolean isEmpty()
+    {
+        if(taskArrayList.isEmpty())
+        {
+            return true;
+        } else
+            return false;
+    }
 /*
 private void readFile() throws IOException, ClassNotFoundException {
         taskArrayList.clear();
@@ -74,6 +91,11 @@ private void readFile() throws IOException, ClassNotFoundException {
         taskArrayList.clear();
         taskArrayList.addAll(tasks);
         tasks.clear();
+    }
+
+    public List<Task> getReg()
+    {
+        return taskArrayList;
     }
 
 
