@@ -68,7 +68,7 @@ public class PrimaryController {
         switchToSecondary();
     }
     @FXML public void updateList(){
-        //taskTableView.refresh();
+        taskTableView.refresh();
         taskTableView.setItems(getTasks());
     }
     @FXML public void initialize(){
@@ -78,6 +78,7 @@ public class PrimaryController {
             taskPriority.setCellValueFactory(new PropertyValueFactory<Task, String>("Priority"));
             taskStartDate.setCellValueFactory(new PropertyValueFactory<Task, LocalDate>("StartDate"));
             taskEndDate.setCellValueFactory(new PropertyValueFactory<Task, LocalDate>("EndDate"));
+            taskTableView.refresh();
             taskTableView.setItems(getTasks());
     }
 
@@ -88,11 +89,22 @@ public class PrimaryController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("There is no tasks to remove!");
             alert.show();
+            return;
         }
 
         Task t1 = taskTableView.getSelectionModel().getSelectedItem();
-        taskRegistry.removeSelectedTask(t1);
-        taskTableView.setItems(getTasks());
+        if(t1 != null)
+        {
+            taskRegistry.removeSelectedTask(t1);
+            taskTableView.setItems(getTasks());
+        }
+        else if(t1 == null)
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("You need to select a task to remove!");
+                alert.show();
+            }
+
     }
 
 }
