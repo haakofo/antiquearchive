@@ -90,10 +90,22 @@ public class PrimaryController {
             alert.show();
         }
 
-        int removeIndex = Integer.parseInt(taskDelete.getText());
-        taskRegistry.removeTask(removeIndex);
+        Task t1 = taskTableView.getSelectionModel().getSelectedItem();
+        taskRegistry.removeSelectedTask(t1);
         taskTableView.setItems(getTasks());
     }
 
+    @FXML public void selectedRemoval()
+    {
+        Task t1 = taskTableView.getSelectionModel().getSelectedItem();
+    }
+
+    /*
+    @FXML
+    private void deleteButtonClicked() {
+        taskRegistry.getReg().removeAll(
+                taskRegistry.getSelectionModel().getSelectedItems()
+        );
+    }*/
 
 }
