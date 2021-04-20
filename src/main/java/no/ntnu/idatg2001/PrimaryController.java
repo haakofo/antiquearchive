@@ -71,7 +71,8 @@ public class PrimaryController {
         taskTableView.refresh();
         taskTableView.setItems(getTasks());
     }
-    @FXML public void initialize(){
+    @FXML public void initialize() throws IOException, ClassNotFoundException {
+        taskRegistry.readFromFile();
             taskTitle.setCellValueFactory(new PropertyValueFactory<Task, String>("Title"));
             taskDescription.setCellValueFactory(new PropertyValueFactory<Task, String>("Description"));
             taskCategory.setCellValueFactory(new PropertyValueFactory<Task, String>("Category"));
