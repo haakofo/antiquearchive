@@ -113,4 +113,37 @@ public class PrimaryController {
 
     }
 
+    @FXML public void changeDoingStatus()
+    {
+        if(taskRegistry.isEmpty())
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("There is no tasks to change Status of");
+            alert.show();
+            return;
+        }
+
+        Task t1 = taskTableView.getSelectionModel().getSelectedItem();
+        if(t1 != null)
+        {
+            if(t1.getDoingStatus().equalsIgnoreCase("toDo")){
+                taskRegistry.changeDoingStatus("done", t1);
+            }
+            else {
+                taskRegistry.changeDoingStatus("todo", t1);
+            }
+
+
+            taskTableView.refresh();
+
+        }
+        else if(t1 == null)
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("You need to select a task to change status!");
+            alert.show();
+        }
+
+    }
+
 }

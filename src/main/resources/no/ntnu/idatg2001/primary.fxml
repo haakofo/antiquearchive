@@ -8,15 +8,16 @@
       <Button layoutX="27.0" layoutY="30.0" mnemonicParsing="false" onMouseClicked="#addTask" text="Add Task" />
       <TableView fx:id="taskTableView" layoutX="27.0" layoutY="78.0" prefHeight="413.0" prefWidth="1200.0">
          <columns>
-            <TableColumn fx:id="taskTitle" prefWidth="130" minWidth="130" maxWidth="130"  text="Title" />
-            <TableColumn fx:id="taskDescription" prefWidth="400" minWidth="400" maxWidth="400" text="Description" />
-            <TableColumn fx:id="taskCategory" prefWidth="150" minWidth="150" maxWidth="150" text="Category" />
-            <TableColumn fx:id="taskPriority" prefWidth="130" minWidth="130" maxWidth="130"  text="Priority" />
-            <TableColumn fx:id="taskStartDate" prefWidth="130" minWidth="130" maxWidth="130"  text="StartDate" />
-            <TableColumn fx:id="taskEndDate" prefWidth="130" minWidth="130" maxWidth="130" text="EndDate" />
+            <TableColumn fx:id="taskTitle" maxWidth="130" minWidth="130" prefWidth="130" text="Title" />
+            <TableColumn fx:id="taskDescription" maxWidth="400" minWidth="400" prefWidth="400" text="Description" />
+            <TableColumn fx:id="taskCategory" maxWidth="150" minWidth="150" prefWidth="150" text="Category" />
+            <TableColumn fx:id="taskPriority" maxWidth="130" minWidth="130" prefWidth="130" text="Priority" />
+            <TableColumn fx:id="taskStartDate" maxWidth="130" minWidth="130" prefWidth="130" text="StartDate" />
+            <TableColumn fx:id="taskEndDate" maxWidth="130" minWidth="130" prefWidth="130" text="EndDate" />
             <TableColumn fx:id="doingStatus" prefWidth="130" text="doing Status" />
          </columns>
       </TableView>
       <Button layoutX="105.0" layoutY="30.0" mnemonicParsing="false" onMouseClicked="#remove" text="Remove Task" />
+      <Button layoutX="211.0" layoutY="30.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="change doingStatus" onMouseClicked="#changeDoingStatus"/>
    </children>
 </Pane>

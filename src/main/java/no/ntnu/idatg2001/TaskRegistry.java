@@ -33,19 +33,19 @@ public class TaskRegistry {
     public void addTask(Task task) {
         taskArrayList.add(task);
        // WriteObjectToFile(taskArrayList);
-        fileReadWrite.writeToFile(taskArrayList);
+        FileReadWrite.writeToFile(taskArrayList);
 
     }
     public void removeTask(int index){
         taskArrayList.remove(index);
-        fileReadWrite.writeToFile(taskArrayList);
+        FileReadWrite.writeToFile(taskArrayList);
 
     }
 
     public void removeSelectedTask(Task taskRemove)
     {
         taskArrayList.remove(taskRemove);
-        fileReadWrite.writeToFile(taskArrayList);
+        FileReadWrite.writeToFile(taskArrayList);
     }
 
     public boolean isEmpty()
@@ -100,8 +100,10 @@ private void readFile() throws IOException, ClassNotFoundException {
         //  taskArrayList.forEach(s -> System.out.println(s.toString()));
     }
 
-    private void changeDoingStatus(String status, int index){
-        taskArrayList.get(index).setDoingStatus(status);
+    public void changeDoingStatus(String status, Task givenTask){
+givenTask.setDoingStatus(status);
+        FileReadWrite.writeToFile(taskArrayList);
+
     }
 
 }
