@@ -11,6 +11,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 public class PrimaryController {
+
+
     TaskRegistry taskRegistry = new TaskRegistry();
 
     @FXML private TableView<Task> taskTableView;
@@ -20,7 +22,8 @@ public class PrimaryController {
     @FXML private TableColumn<Task,String> taskPriority;
     @FXML private TableColumn<Task,LocalDate> taskStartDate;
     @FXML private TableColumn<Task, LocalDate> taskEndDate;
-    @FXML private TextField taskDelete;
+    @FXML private TableColumn<Task,String> doingStatus;
+
     @FXML
     private TableView createTableView(){
 
@@ -79,6 +82,7 @@ public class PrimaryController {
             taskPriority.setCellValueFactory(new PropertyValueFactory<Task, String>("Priority"));
             taskStartDate.setCellValueFactory(new PropertyValueFactory<Task, LocalDate>("StartDate"));
             taskEndDate.setCellValueFactory(new PropertyValueFactory<Task, LocalDate>("EndDate"));
+            doingStatus.setCellValueFactory(new PropertyValueFactory<Task,String>("doingStatus"));
             taskTableView.refresh();
             taskTableView.setItems(getTasks());
 
