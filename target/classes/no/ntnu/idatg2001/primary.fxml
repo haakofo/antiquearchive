@@ -6,7 +6,7 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatg2001.PrimaryController">
    <children>
       <Button layoutX="27.0" layoutY="30.0" mnemonicParsing="false" onMouseClicked="#addTask" text="Add Task" />
-      <TableView fx:id="taskTableView" layoutX="27.0" layoutY="78.0" prefHeight="413.0" prefWidth="1077.0">
+      <TableView  fx:id="taskTableView" layoutX="27.0" layoutY="78.0" prefHeight="413.0" prefWidth="1077.0">
          <columns>
             <TableColumn fx:id="taskTitle" prefWidth="130" text="Title" />
             <TableColumn fx:id="taskDescription" prefWidth="400" text="Description" />

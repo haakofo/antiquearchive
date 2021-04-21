@@ -13,7 +13,6 @@ import javafx.scene.input.InputMethodEvent;
 public class SecondaryController {
 
 
-
     TaskRegistry taskRegistry = new TaskRegistry();
     ObservableList<String> priorityList = FXCollections.observableArrayList("High", "Medium", "Low");
     PrimaryController primaryController = new PrimaryController();
@@ -55,7 +54,7 @@ public class SecondaryController {
         LocalDate startDate = datePicker1.getValue();
         LocalDate endDate = datePicker2.getValue();
 
-        if(!tf1.getText().equals("")& comboBox1.getValue() != null & datePicker2.getValue() != null){
+        if (!tf1.getText().equals("") & comboBox1.getValue() != null & datePicker2.getValue() != null) {
             taskRegistry.addTask(new Task(title, priority, description, category, startDate, endDate));
 
             try {
@@ -63,10 +62,17 @@ public class SecondaryController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-        else
+        } else
             warningLabel.setText("required field missing");
 
 
+    }
+    @FXML
+    void goBack(ActionEvent event){
+        try {
+            switchToPrimary(event);
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
