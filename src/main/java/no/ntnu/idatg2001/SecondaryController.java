@@ -7,12 +7,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.InputMethodEvent;
 
 public class SecondaryController {
+
+
 
     TaskRegistry taskRegistry = new TaskRegistry();
     ObservableList<String> priorityList = FXCollections.observableArrayList("High", "Medium", "Low");
@@ -20,8 +20,13 @@ public class SecondaryController {
     @FXML
     private TextField tf1;
 
+
+
     @FXML
     private TextField tf2;
+
+    @FXML
+    public Label warningLabel;
 
     @FXML
     private TextField tf3;
@@ -49,12 +54,19 @@ public class SecondaryController {
         String priority = comboBox1.getValue();
         LocalDate startDate = datePicker1.getValue();
         LocalDate endDate = datePicker2.getValue();
-        taskRegistry.addTask(new Task(title, priority, description, category, startDate, endDate));
 
-        try {
-            switchToPrimary(event);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(!tf1.getText().equals("")& comboBox1.getValue() != null & datePicker2.getValue() != null){
+            taskRegistry.addTask(new Task(title, priority, description, category, startDate, endDate));
+
+            try {
+                switchToPrimary(event);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+        else
+            warningLabel.setText("required field missing");
+
+
     }
 }

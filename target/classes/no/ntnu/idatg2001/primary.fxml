@@ -8,12 +8,12 @@
       <Button layoutX="27.0" layoutY="30.0" mnemonicParsing="false" onMouseClicked="#addTask" text="Add Task" />
       <TableView fx:id="taskTableView" layoutX="27.0" layoutY="78.0" prefHeight="413.0" prefWidth="1077.0">
          <columns>
-            <TableColumn fx:id="taskTitle" prefWidth="127.60000991821289" text="Title" />
-            <TableColumn fx:id="taskDescription" prefWidth="389.19996643066406" text="Description" />
+            <TableColumn fx:id="taskTitle" prefWidth="130" text="Title" />
+            <TableColumn fx:id="taskDescription" prefWidth="400" text="Description" />
             <TableColumn fx:id="taskCategory" minWidth="0.0" prefWidth="151.199951171875" text="Category" />
-            <TableColumn fx:id="taskPriority" prefWidth="124.800048828125" text="Priority" />
-            <TableColumn fx:id="taskStartDate" prefWidth="141.5999755859375" text="StartDate" />
-            <TableColumn fx:id="taskEndDate" prefWidth="146.5999755859375" text="EndDate" />
+            <TableColumn fx:id="taskPriority" prefWidth="130" text="Priority" />
+            <TableColumn fx:id="taskStartDate" prefWidth="130" text="StartDate" />
+            <TableColumn fx:id="taskEndDate" prefWidth="130" text="EndDate" />
          </columns>
       </TableView>
       <Button layoutX="105.0" layoutY="30.0" mnemonicParsing="false" onMouseClicked="#remove" text="Remove Task" />
