@@ -5,16 +5,19 @@ import java.time.LocalDate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class PrimaryController {
 
 
-    TaskRegistry taskRegistry = new TaskRegistry();
 
+    TaskRegistry taskRegistry = new TaskRegistry();
+    @FXML public Button exitButton;
     @FXML private TableView<Task> taskTableView;
     @FXML private TableColumn<Task, String> taskTitle;
     @FXML private TableColumn<Task,String> taskDescription;
@@ -42,7 +45,7 @@ public class PrimaryController {
     private ObservableList<Task> getTasks(){
 
         ObservableList<Task> tasksObservableList = FXCollections.observableArrayList();
-        tasksObservableList.addAll(taskRegistry.taskArrayList);
+        tasksObservableList.addAll(TaskRegistry.taskArrayList);
 
         return tasksObservableList;
     }
@@ -151,5 +154,17 @@ public class PrimaryController {
         }
 
     }
+
+    public void exit(ActionEvent mouseEvent) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to exit program?", ButtonType.YES, ButtonType.NO);
+        alert.showAndWait();
+
+        if (alert.getResult() == ButtonType.YES) {
+
+                Stage stage = (Stage) exitButton.getScene().getWindow();
+                // do what you have to do
+                stage.close();
+            }
+        }
 
 }
