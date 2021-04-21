@@ -101,8 +101,14 @@ public class PrimaryController {
         Task t1 = taskTableView.getSelectionModel().getSelectedItem();
         if(t1 != null)
         {
-            taskRegistry.removeSelectedTask(t1);
-            taskTableView.setItems(getTasks());
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to remove task?", ButtonType.YES, ButtonType.NO);
+            alert.showAndWait();
+
+            if (alert.getResult() == ButtonType.YES) {
+                taskRegistry.removeSelectedTask(t1);
+                taskTableView.setItems(getTasks());
+            }
+
         }
         else if(t1 == null)
             {
