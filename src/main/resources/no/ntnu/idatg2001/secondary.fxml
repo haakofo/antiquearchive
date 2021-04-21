@@ -41,7 +41,7 @@
                 <Font size="16.0" />
             </font>
         </Label>
-        <DatePicker fx:id="datePicker1" layoutX="130.0" layoutY="267.0" />
+        <DatePicker fx:id="datePicker1" layoutX="130.0" layoutY="267.0"  />
         <DatePicker fx:id="datePicker2" layoutX="130.0" layoutY="313.0" />
         <ComboBox fx:id="comboBox1" layoutX="129.0" layoutY="123.0" prefWidth="150.0">
             <items>

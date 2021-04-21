@@ -46,7 +46,6 @@ public class SecondaryController {
     @FXML
     void setTask(ActionEvent event) throws IOException, ClassNotFoundException {
         taskRegistry.readFromFile();
-
         String title = tf1.getText();
         String description = tf2.getText();
         String category = tf3.getText();
@@ -54,7 +53,7 @@ public class SecondaryController {
         LocalDate startDate = datePicker1.getValue();
         LocalDate endDate = datePicker2.getValue();
 
-        if (!tf1.getText().equals("") & comboBox1.getValue() != null & datePicker2.getValue() != null) {
+        if (!tf1.getText().equals("") && comboBox1.getValue() != null && datePicker2.getValue() != null) {
             taskRegistry.addTask(new Task(title, priority, description, category, startDate, endDate));
 
             try {
