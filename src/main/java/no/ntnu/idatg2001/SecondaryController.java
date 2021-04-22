@@ -2,9 +2,6 @@ package no.ntnu.idatg2001;
 
 import java.io.IOException;
 import java.time.LocalDate;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -14,7 +11,6 @@ public class SecondaryController {
 
 
     TaskRegistry taskRegistry = new TaskRegistry();
-    ObservableList<String> priorityList = FXCollections.observableArrayList("High", "Medium", "Low");
     PrimaryController primaryController = new PrimaryController();
     @FXML
     private TextField tf1;

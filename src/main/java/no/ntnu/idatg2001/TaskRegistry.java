@@ -11,7 +11,6 @@ public class TaskRegistry {
 
     public void addTask(Task task) {
         taskArrayList.add(task);
-        // WriteObjectToFile(taskArrayList);
         FileReadWrite.writeToFile(taskArrayList);
 
     }
