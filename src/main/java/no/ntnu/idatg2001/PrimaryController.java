@@ -27,20 +27,8 @@ public class PrimaryController {
     @FXML private TableColumn<Task, LocalDate> taskEndDate;
     @FXML private TableColumn<Task,String> doingStatus;
 
-    @FXML
-    private TableView createTableView(){
 
-        taskTableView.setItems(this.getTasks());
-        //tableView.setItems(FXCollections.observableList(this.getStudentArrayList()));
-        return taskTableView;
-    }
-    /*
-    @FXML
-    void sortTasksStart(MouseEvent event) throws ParseException, IOException, ClassNotFoundException {
-        taskRegistry.readFromFile();
-        taskRegistry.sortByStartDate();
 
-    } */
     @FXML
     private ObservableList<Task> getTasks(){
 
@@ -56,13 +44,6 @@ public class PrimaryController {
         taskRegistry.printData();
     }
 
-    @FXML
-    void updateTable(MouseEvent event) {
-        ObservableList<Task> getTasks1 = this.getTasks();
-        System.out.println("get tasks");
-        taskTableView.setItems(getTasks1);
-    }
-
 
     @FXML
     private void switchToSecondary() throws IOException {
@@ -73,12 +54,10 @@ public class PrimaryController {
     void addTask(MouseEvent event) throws IOException {
         switchToSecondary();
     }
-    @FXML public void updateList(){
-        taskTableView.refresh();
-        taskTableView.setItems(getTasks());
-    }
+
+
     @FXML public void initialize() throws IOException, ClassNotFoundException {
-        taskRegistry.readFromFile();
+            taskRegistry.readFromFile();
             taskTitle.setCellValueFactory(new PropertyValueFactory<Task, String>("Title"));
             taskDescription.setCellValueFactory(new PropertyValueFactory<Task, String>("Description"));
             taskCategory.setCellValueFactory(new PropertyValueFactory<Task, String>("Category"));
@@ -96,7 +75,7 @@ public class PrimaryController {
         if(taskRegistry.isEmpty())
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("There is no tasks to remove!");
+            alert.setHeaderText("There is no tasks to remove");
             alert.show();
             return;
         }
@@ -116,7 +95,7 @@ public class PrimaryController {
         else if(t1 == null)
             {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText("You need to select a task to remove!");
+                alert.setHeaderText("You need to select a task to remove");
                 alert.show();
             }
 
