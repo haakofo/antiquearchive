@@ -15,22 +15,29 @@ import javafx.stage.Stage;
 public class PrimaryController {
 
 
-
     TaskRegistry taskRegistry = new TaskRegistry();
-    @FXML public Button exitButton;
-    @FXML private TableView<Task> taskTableView;
-    @FXML private TableColumn<Task, String> taskTitle;
-    @FXML private TableColumn<Task,String> taskDescription;
-    @FXML private TableColumn<Task,String> taskCategory;
-    @FXML private TableColumn<Task,String> taskPriority;
-    @FXML private TableColumn<Task,LocalDate> taskStartDate;
-    @FXML private TableColumn<Task, LocalDate> taskEndDate;
-    @FXML private TableColumn<Task,String> doingStatus;
-
+    @FXML
+    public Button exitButton;
+    @FXML
+    private TableView<Task> taskTableView;
+    @FXML
+    private TableColumn<Task, String> taskTitle;
+    @FXML
+    private TableColumn<Task, String> taskDescription;
+    @FXML
+    private TableColumn<Task, String> taskCategory;
+    @FXML
+    private TableColumn<Task, String> taskPriority;
+    @FXML
+    private TableColumn<Task, LocalDate> taskStartDate;
+    @FXML
+    private TableColumn<Task, LocalDate> taskEndDate;
+    @FXML
+    private TableColumn<Task, String> doingStatus;
 
 
     @FXML
-    private ObservableList<Task> getTasks(){
+    private ObservableList<Task> getTasks() {
 
         ObservableList<Task> tasksObservableList = FXCollections.observableArrayList();
         tasksObservableList.addAll(TaskRegistry.taskArrayList);
@@ -56,24 +63,24 @@ public class PrimaryController {
     }
 
 
-    @FXML public void initialize() throws IOException, ClassNotFoundException {
-            taskRegistry.readFromFile();
-            taskTitle.setCellValueFactory(new PropertyValueFactory<Task, String>("Title"));
-            taskDescription.setCellValueFactory(new PropertyValueFactory<Task, String>("Description"));
-            taskCategory.setCellValueFactory(new PropertyValueFactory<Task, String>("Category"));
-            taskPriority.setCellValueFactory(new PropertyValueFactory<Task, String>("Priority"));
-            taskStartDate.setCellValueFactory(new PropertyValueFactory<Task, LocalDate>("StartDate"));
-            taskEndDate.setCellValueFactory(new PropertyValueFactory<Task, LocalDate>("EndDate"));
-            doingStatus.setCellValueFactory(new PropertyValueFactory<Task,String>("doingStatus"));
-            taskTableView.refresh();
-            taskTableView.setItems(getTasks());
+    @FXML
+    public void initialize() throws IOException, ClassNotFoundException {
+        taskRegistry.readFromFile();
+        taskTitle.setCellValueFactory(new PropertyValueFactory<Task, String>("Title"));
+        taskDescription.setCellValueFactory(new PropertyValueFactory<Task, String>("Description"));
+        taskCategory.setCellValueFactory(new PropertyValueFactory<Task, String>("Category"));
+        taskPriority.setCellValueFactory(new PropertyValueFactory<Task, String>("Priority"));
+        taskStartDate.setCellValueFactory(new PropertyValueFactory<Task, LocalDate>("StartDate"));
+        taskEndDate.setCellValueFactory(new PropertyValueFactory<Task, LocalDate>("EndDate"));
+        doingStatus.setCellValueFactory(new PropertyValueFactory<Task, String>("doingStatus"));
+        taskTableView.refresh();
+        taskTableView.setItems(getTasks());
 
     }
 
-    @FXML public void remove()
-    {
-        if(taskRegistry.isEmpty())
-        {
+    @FXML
+    public void remove() {
+        if (taskRegistry.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("There is no tasks to remove");
             alert.show();
@@ -81,8 +88,7 @@ public class PrimaryController {
         }
 
         Task t1 = taskTableView.getSelectionModel().getSelectedItem();
-        if(t1 != null)
-        {
+        if (t1 != null) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to remove task?", ButtonType.YES, ButtonType.NO);
             alert.showAndWait();
 
@@ -91,20 +97,17 @@ public class PrimaryController {
                 taskTableView.setItems(getTasks());
             }
 
+        } else if (t1 == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("You need to select a task to remove");
+            alert.show();
         }
-        else if(t1 == null)
-            {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText("You need to select a task to remove");
-                alert.show();
-            }
 
     }
 
-    @FXML public void changeDoingStatus()
-    {
-        if(taskRegistry.isEmpty())
-        {
+    @FXML
+    public void changeDoingStatus() {
+        if (taskRegistry.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("There is no tasks to change Status of");
             alert.show();
@@ -112,21 +115,17 @@ public class PrimaryController {
         }
 
         Task t1 = taskTableView.getSelectionModel().getSelectedItem();
-        if(t1 != null)
-        {
-            if(t1.getDoingStatus().equalsIgnoreCase("toDo")){
+        if (t1 != null) {
+            if (t1.getDoingStatus().equalsIgnoreCase("toDo")) {
                 taskRegistry.changeDoingStatus("done", t1);
-            }
-            else {
+            } else {
                 taskRegistry.changeDoingStatus("todo", t1);
             }
 
 
             taskTableView.refresh();
 
-        }
-        else if(t1 == null)
-        {
+        } else if (t1 == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("You need to select a task to change status!");
             alert.show();
@@ -140,10 +139,10 @@ public class PrimaryController {
 
         if (alert.getResult() == ButtonType.YES) {
 
-                Stage stage = (Stage) exitButton.getScene().getWindow();
-                // do what you have to do
-                stage.close();
-            }
+            Stage stage = (Stage) exitButton.getScene().getWindow();
+            // do what you have to do
+            stage.close();
         }
+    }
 
 }

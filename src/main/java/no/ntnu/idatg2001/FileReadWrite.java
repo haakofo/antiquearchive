@@ -17,7 +17,8 @@ public class FileReadWrite {
             .setPrettyPrinting()
             .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
             .create();
-    public static void writeToFile(List<Task> arrayList){
+
+    public static void writeToFile(List<Task> arrayList) {
 
         try {
 
@@ -41,7 +42,8 @@ public class FileReadWrite {
         Reader reader = Files.newBufferedReader(Paths.get("objectFile.json"));
 
 
-        return gson.fromJson(reader, new TypeToken<List<Task>>(){}.getType());
+        return gson.fromJson(reader, new TypeToken<List<Task>>() {
+        }.getType());
 
 
     }

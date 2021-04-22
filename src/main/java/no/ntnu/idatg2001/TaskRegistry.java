@@ -4,38 +4,30 @@ import java.io.*;
 import java.util.ArrayList;
 
 
-
 public class TaskRegistry {
 
     static ArrayList<Task> taskArrayList = new ArrayList<>();
 
 
-
-
     public void addTask(Task task) {
         taskArrayList.add(task);
-       // WriteObjectToFile(taskArrayList);
+        // WriteObjectToFile(taskArrayList);
         FileReadWrite.writeToFile(taskArrayList);
 
     }
 
 
-    public void removeSelectedTask(Task taskRemove)
-    {
+    public void removeSelectedTask(Task taskRemove) {
         taskArrayList.remove(taskRemove);
         FileReadWrite.writeToFile(taskArrayList);
     }
 
-    public boolean isEmpty()
-    {
-        if(taskArrayList.isEmpty())
-        {
+    public boolean isEmpty() {
+        if (taskArrayList.isEmpty()) {
             return true;
         } else
             return false;
     }
-
-
 
 
     public void printData() {
@@ -44,13 +36,12 @@ public class TaskRegistry {
     }
 
     public void readFromFile() throws IOException, ClassNotFoundException {
-       taskArrayList = (ArrayList<Task>) FileReadWrite.readFromFile();
+        taskArrayList = (ArrayList<Task>) FileReadWrite.readFromFile();
     }
 
 
-
-    public void changeDoingStatus(String status, Task givenTask){
-givenTask.setDoingStatus(status);
+    public void changeDoingStatus(String status, Task givenTask) {
+        givenTask.setDoingStatus(status);
         FileReadWrite.writeToFile(taskArrayList);
 
     }

@@ -20,7 +20,6 @@ public class SecondaryController {
     private TextField tf1;
 
 
-
     @FXML
     private TextField tf2;
 
@@ -66,8 +65,9 @@ public class SecondaryController {
 
 
     }
+
     @FXML
-    void goBack(ActionEvent event){
+    void goBack(ActionEvent event) {
         try {
             switchToPrimary(event);
         } catch (IOException | ClassNotFoundException e) {
