@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="no.ntnu.idatg2001.tertiaryController" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="96.0" layoutY="61.0" text="title:">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label layoutX="48.0" layoutY="143.0" text="description:">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label layoutX="75.0" layoutY="101.0" text="priority:">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label layoutX="64.0" layoutY="188.0" text="category:">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label layoutX="61.0" layoutY="231.0" text="start date:">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label layoutX="58.0" layoutY="270.0" text="finish date:">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <TextField layoutX="159.0" layoutY="61.0" />
+      <TextField layoutX="159.0" layoutY="101.0" />
+      <TextField layoutX="159.0" layoutY="143.0" />
+      <TextField layoutX="159.0" layoutY="188.0" />
+      <TextField layoutX="159.0" layoutY="231.0" />
+      <TextField layoutX="159.0" layoutY="270.0" />
+      <Button layoutX="407.0" layoutY="143.0" mnemonicParsing="false" text="cancel" />
+      <Button layoutX="398.0" layoutY="188.0" mnemonicParsing="false" text="finish edit" />
+   </children>
+</Pane>
