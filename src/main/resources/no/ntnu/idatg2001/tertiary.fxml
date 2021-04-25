@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="no.ntnu.idatg2001.tertiaryController" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatg2001.EditTaskController">
    <children>
       <Label layoutX="96.0" layoutY="61.0" text="title:">
          <font>
@@ -30,13 +38,37 @@
          <font>
             <Font size="16.0" />
          </font></Label>
-      <TextField layoutX="159.0" layoutY="61.0" />
-      <TextField layoutX="159.0" layoutY="101.0" />
-      <TextField layoutX="159.0" layoutY="143.0" />
-      <TextField layoutX="159.0" layoutY="188.0" />
-      <TextField layoutX="159.0" layoutY="231.0" />
-      <TextField layoutX="159.0" layoutY="270.0" />
+      <TextField fx:id="titleTextField" layoutX="159.0" layoutY="61.0" />
+      <TextField fx:id="descriptionTextField" layoutX="160.0" layoutY="143.0" />
+      <TextField fx:id="categoryTextField" layoutX="159.0" layoutY="188.0" />
       <Button layoutX="407.0" layoutY="143.0" mnemonicParsing="false" text="cancel" />
-      <Button layoutX="398.0" layoutY="188.0" mnemonicParsing="false" text="finish edit" />
+      <Button layoutX="398.0" layoutY="188.0" mnemonicParsing="false" onAction="#setTask" text="finish edit" />
+      <DatePicker fx:id="startDatePicker" layoutX="159.0" layoutY="231.0" prefHeight="25.0" prefWidth="149.0" />
+      <DatePicker fx:id="finishDatePicker" layoutX="159.0" layoutY="270.0" prefHeight="25.0" prefWidth="149.0" />
+      <ComboBox fx:id="priorityComboBox" layoutX="159.0" layoutY="101.0" prefWidth="150.0" visibleRowCount="3">
+      <items>
+         <FXCollections fx:factory="observableArrayList">
+            <String fx:value="High" />
+            <String fx:value="Medium" />
+            <String fx:value="Low" />
+         </FXCollections>
+      </items>
+      </ComboBox>
+      <Text layoutX="375.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fields markes with * are mandatory" />
+      <Text layoutX="318.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="318.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="318.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
    </children>
 </Pane>

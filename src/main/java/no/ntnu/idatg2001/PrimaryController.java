@@ -35,6 +35,9 @@ public class PrimaryController {
     @FXML
     private TableColumn<Task, String> doingStatus;
 
+    @FXML
+    public Task taskToEdit;
+
 
     @FXML
     private ObservableList<Task> getTasks() {
@@ -57,9 +60,45 @@ public class PrimaryController {
         App.setRoot("secondary");
     }
 
+    private void switchToEdit() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("tertiary.fxml"));
+        Parent root = fxmlLoader.load();
+        EditTaskController editTaskController = fxmlLoader.getController();
+        editTaskController.setEditTask(taskTableView.getSelectionModel().getSelectedItem());
+        App.setRoot(root);
+    }
+
     @FXML
     void addTask(MouseEvent event) throws IOException {
         switchToSecondary();
+    }
+
+    @FXML
+    public void editTask() {
+        if (taskRegistry.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("There are no tasks to edit");
+            alert.show();
+            return;
+        }
+
+        taskToEdit = taskTableView.getSelectionModel().getSelectedItem();
+        if (taskToEdit != null) {
+            try {
+                switchToEdit();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            taskRegistry.removeSelectedTask(taskToEdit);
+            taskTableView.setItems(getTasks());
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("You need to select a task to edit");
+            alert.show();
+        }
+
     }
 
 
@@ -82,7 +121,7 @@ public class PrimaryController {
     public void remove() {
         if (taskRegistry.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("There is no tasks to remove");
+            alert.setHeaderText("There are no tasks to remove");
             alert.show();
             return;
         }
@@ -97,7 +136,7 @@ public class PrimaryController {
                 taskTableView.setItems(getTasks());
             }
 
-        } else if (t1 == null) {
+        } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("You need to select a task to remove");
             alert.show();
@@ -109,7 +148,7 @@ public class PrimaryController {
     public void changeDoingStatus() {
         if (taskRegistry.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("There is no tasks to change Status of");
+            alert.setHeaderText("There are no tasks to change Status of");
             alert.show();
             return;
         }
@@ -125,7 +164,7 @@ public class PrimaryController {
 
             taskTableView.refresh();
 
-        } else if (t1 == null) {
+        } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("You need to select a task to change status!");
             alert.show();
