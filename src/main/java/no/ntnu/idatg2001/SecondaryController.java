@@ -9,7 +9,10 @@ import javafx.scene.control.*;
 
 public class SecondaryController {
 
-
+    /**
+     * Creates the registry and a primary controller object so that the controller can be switched.
+     * Also declares the labels,texfields, etc.
+     */
     TaskRegistry taskRegistry = new TaskRegistry();
     PrimaryController primaryController = new PrimaryController();
     @FXML
@@ -32,12 +35,24 @@ public class SecondaryController {
     @FXML
     private DatePicker datePicker2;
 
+    /**
+     * This method switched back to the primary controller when the "Add" button is clicked.
+     * @param event
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     @FXML
     private void switchToPrimary(ActionEvent event) throws IOException, ClassNotFoundException {
         primaryController.print();
         App.setRoot("primary");
     }
 
+    /**
+     * This method adds the task with the text taken from the textfields.Then it uses the switchToPrimary to switch controller.
+     * @param event
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     @FXML
     void setTask(ActionEvent event) throws IOException, ClassNotFoundException {
         taskRegistry.readFromFile();
@@ -62,6 +77,10 @@ public class SecondaryController {
 
     }
 
+    /**
+     * This method is used when the "Go back" button is chosen and takes the user back to the first window (main controller).
+     * @param event
+     */
     @FXML
     void goBack(ActionEvent event) {
         try {

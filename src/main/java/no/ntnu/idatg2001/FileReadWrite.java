@@ -13,11 +13,19 @@ import com.google.gson.reflect.TypeToken;
 
 
 public class FileReadWrite {
+
+    /**
+     * Sets up a Gson builder.
+     */
     static Gson gson = new GsonBuilder()
             .setPrettyPrinting()
             .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
             .create();
 
+    /**
+     * This methods takes the arraylist and tries to write it to the json file and throws and Exception if it fails.
+     * @param arrayList
+     */
     public static void writeToFile(List<Task> arrayList) {
 
         try {
@@ -36,6 +44,12 @@ public class FileReadWrite {
         }
     }
 
+    /**
+     * This method reads from the file and returns a List with all the tasks found in the file.
+     * @return
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public static List<Task> readFromFile() throws IOException, ClassNotFoundException {
 
 

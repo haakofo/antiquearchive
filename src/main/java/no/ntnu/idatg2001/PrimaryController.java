@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 public class PrimaryController {
 
     /**
-     * TEST JAVADOC
+     * Fields for the main controller. Creates a registry.
      */
     TaskRegistry taskRegistry = new TaskRegistry();
     @FXML
@@ -37,7 +37,10 @@ public class PrimaryController {
     @FXML
     private TableColumn<Task, String> doingStatus;
 
-
+    /**
+     * Gets the tasks form the registry and returns them in an Observable arraylist.
+     * @return
+     */
     @FXML
     private ObservableList<Task> getTasks() {
 
@@ -47,24 +50,41 @@ public class PrimaryController {
         return tasksObservableList;
     }
 
+    /**
+     * This prints the tasks found in the registry and throws two exceptions.
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     @FXML
     public void print() throws IOException, ClassNotFoundException {
         taskRegistry.readFromFile();
         taskRegistry.printData();
     }
 
-
+    /**
+     * This method switches the app to the secondary controller.
+     * @throws IOException
+     */
     @FXML
     private void switchToSecondary() throws IOException {
         App.setRoot("secondary");
     }
 
+    /**
+     * This method is used when the user clicks the "Add" button.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void addTask(MouseEvent event) throws IOException {
         switchToSecondary();
     }
 
-
+    /**
+     * This is the initialize method for the controller. It sets the correct Cell values and gets the tasks from the registry.
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     @FXML
     public void initialize() throws IOException, ClassNotFoundException {
         taskRegistry.readFromFile();
@@ -80,6 +100,9 @@ public class PrimaryController {
 
     }
 
+    /**
+     * This is the remove method for the controller. It removes the task that is clicked and will give you an alert if you haven't chosen any task or if there are none.
+     */
     @FXML
     public void remove() {
         if (taskRegistry.isEmpty()) {
@@ -107,6 +130,9 @@ public class PrimaryController {
 
     }
 
+    /**
+     * This method changes the doig status of the selected task and gives an alert if no task is chosen or if there are none.
+     */
     @FXML
     public void changeDoingStatus() {
         if (taskRegistry.isEmpty()) {
@@ -135,6 +161,10 @@ public class PrimaryController {
 
     }
 
+    /**
+     * This method exits the app and asks the user to confirm that they want to exit before exiting.
+     * @param mouseEvent
+     */
     public void exit(ActionEvent mouseEvent) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to exit program?", ButtonType.YES, ButtonType.NO);
         alert.showAndWait();
