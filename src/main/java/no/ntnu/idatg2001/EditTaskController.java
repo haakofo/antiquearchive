@@ -63,13 +63,14 @@ public class EditTaskController {
         this.task = task;
     }
 
+    String priority;
     @FXML
     private void setTask() throws IOException, ClassNotFoundException {
         taskRegistry.readFromFile();
         String title = titleTextField.getText();
         String description = descriptionTextField.getText();
         String category = categoryTextField.getText();
-        String priority = (String) priorityComboBox.getValue();
+        priority = priorityComboBox.getValue();
         LocalDate startDate = startDatePicker.getValue();
         LocalDate endDate = finishDatePicker.getValue();
         if (!titleTextField.getText().equals("") && priorityComboBox.getValue() != null && finishDatePicker.getValue() != null) {
@@ -107,8 +108,11 @@ public class EditTaskController {
                 titleTextField.setText(task.getTitle());
                 descriptionTextField.setText(task.getDescription());
                 categoryTextField.setText(task.getCategory());
-                startDatePicker.setPromptText(task.getStartDate().toString());
-                finishDatePicker.setPromptText(task.getEndDate().toString());
+                int comboBoxIndex = priorityComboBox.getItems().indexOf(task.getPriority());
+                priorityComboBox.getSelectionModel().select(comboBoxIndex);
+                startDatePicker.setValue(task.getStartDate());
+                finishDatePicker.setValue(task.getEndDate());
+
             }
         });
     }
