@@ -13,6 +13,7 @@ public class RegistryTest
      * Setting up the registry to be used with the tests.
      */
     private static TaskRegistry t1;
+    private static Task task1;
 
     /**
      * This simple method creates the reigstry to be used with the tests as well as a Task.Then adds the tasks.
@@ -21,7 +22,7 @@ public class RegistryTest
      static void initialize()
      {
          t1 = new TaskRegistry();
-         Task task1 = new Task("Test Oppgave", "High", "Hei, jeg er en kul test!", "Tester og slik", LocalDate.of(2021, 4, 10), LocalDate.of(2021, 5, 6));
+         task1 = new Task("Test Oppgave", "High", "Hei, jeg er en kul test!", "Tester og slik", LocalDate.of(2021, 4, 10), LocalDate.of(2021, 5, 6));
          t1.addTask(task1);
      }
 
@@ -31,7 +32,7 @@ public class RegistryTest
     @Test
     void addTestPositive()
     {
-        assertEquals("Test Oppgave",t1.getReg().get(0).getTitle());
+        assertEquals("Test Oppgave",task1.getTitle());
     }
 
     /**
@@ -40,7 +41,7 @@ public class RegistryTest
     @Test
     void addTestNegative()
     {
-        assertNotEquals("Ikke riktig tittel!", t1.getReg().get(0).getTitle());
+        assertNotEquals("Ikke riktig tittel!", task1.getTitle());
     }
 
     /**
@@ -49,18 +50,7 @@ public class RegistryTest
     @Test
     void removeTestPositive()
     {
-        t1.removeTask(0);
-        assertEquals(0,t1.getReg().size());
-    }
-
-    /**
-     * Checks that the size of the registry has gotten smaller after removal.
-     */
-    @Test
-    void removeTestNegative()
-    {
-        initialize();
-        t1.removeTask(0);
-        assertFalse(t1.getReg().size() == 1);
+        t1.removeSelectedTask(task1);
+        assertTrue(t1.isEmpty());
     }
 }
