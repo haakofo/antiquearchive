@@ -7,6 +7,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -61,7 +63,7 @@ public class PrimaryController {
     }
 
     private void switchToEdit() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("tertiary.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("editTask.fxml"));
         Parent root = fxmlLoader.load();
         EditTaskController editTaskController = fxmlLoader.getController();
         editTaskController.setEditTask(taskTableView.getSelectionModel().getSelectedItem());
@@ -148,7 +150,7 @@ public class PrimaryController {
     public void changeDoingStatus() {
         if (taskRegistry.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("There are no tasks to change Status of");
+            alert.setHeaderText("There are no tasks to change status of");
             alert.show();
             return;
         }
@@ -173,7 +175,7 @@ public class PrimaryController {
     }
 
     public void exit(ActionEvent mouseEvent) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to exit program?", ButtonType.YES, ButtonType.NO);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to exit the program?", ButtonType.YES, ButtonType.NO);
         alert.showAndWait();
 
         if (alert.getResult() == ButtonType.YES) {

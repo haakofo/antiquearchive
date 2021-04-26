@@ -41,8 +41,8 @@
       <TextField fx:id="titleTextField" layoutX="159.0" layoutY="61.0" />
       <TextField fx:id="descriptionTextField" layoutX="160.0" layoutY="143.0" />
       <TextField fx:id="categoryTextField" layoutX="159.0" layoutY="188.0" />
-      <Button layoutX="407.0" layoutY="143.0" mnemonicParsing="false" text="cancel" />
-      <Button layoutX="398.0" layoutY="188.0" mnemonicParsing="false" onAction="#setTask" text="finish edit" />
+      <Button layoutX="407.0" layoutY="143.0" mnemonicParsing="false" onAction="#cancelEdit" text="Cancel edit" />
+      <Button layoutX="398.0" layoutY="188.0" mnemonicParsing="false" onAction="#setTask" text="Finish edit" />
       <DatePicker fx:id="startDatePicker" layoutX="159.0" layoutY="231.0" prefHeight="25.0" prefWidth="149.0" />
       <DatePicker fx:id="finishDatePicker" layoutX="159.0" layoutY="270.0" prefHeight="25.0" prefWidth="149.0" />
       <ComboBox fx:id="priorityComboBox" layoutX="159.0" layoutY="101.0" prefWidth="150.0" visibleRowCount="3">

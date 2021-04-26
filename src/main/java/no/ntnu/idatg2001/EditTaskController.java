@@ -15,23 +15,10 @@ public class EditTaskController {
     TaskRegistry taskRegistry = new TaskRegistry();
 
     @FXML
-    private ObservableList<Task> getTasks() {
-
-        ObservableList<Task> tasksObservableList = FXCollections.observableArrayList();
-        tasksObservableList.addAll(TaskRegistry.taskArrayList);
-
-        return tasksObservableList;
-    }
-
-    @FXML
     private TextField titleTextField;
-
 
     @FXML
     private TextField descriptionTextField;
-
-    @FXML
-    public Label warningLabel;
 
     @FXML
     private ComboBox<?> priorityComboBox;
@@ -45,18 +32,6 @@ public class EditTaskController {
     @FXML
     private DatePicker finishDatePicker;
 
-    /*
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("primary.fxml"));
-    PrimaryController primaryController = loader.<PrimaryController>getController();
-
-    //@FXML
-    private void setFields() throws IOException, ClassNotFoundException {
-        titleTextField.setText(primaryController.taskToEdit.getTitle());
-        //priorityComboBox.
-        descriptionTextField.setText(getTasks().get(0).getDescription());
-        categoryTextField.setText(getTasks().get(0).getCategory());
-    }
-    */
     private Task task;
 
     void setEditTask(Task task) {
@@ -70,7 +45,7 @@ public class EditTaskController {
         String title = titleTextField.getText();
         String description = descriptionTextField.getText();
         String category = categoryTextField.getText();
-        priority = priorityComboBox.getValue();
+        priority = (String) priorityComboBox.getValue();
         LocalDate startDate = startDatePicker.getValue();
         LocalDate endDate = finishDatePicker.getValue();
         if (!titleTextField.getText().equals("") && priorityComboBox.getValue() != null && finishDatePicker.getValue() != null) {
@@ -84,9 +59,18 @@ public class EditTaskController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("You missed a required field");
             alert.show();
-           //return;
         }
 
+    }
+
+    @FXML
+    private void cancelEdit(){
+        taskRegistry.addTask(task);
+        try {
+            switchToPrimary();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
