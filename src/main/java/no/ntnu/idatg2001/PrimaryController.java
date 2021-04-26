@@ -59,7 +59,7 @@ public class PrimaryController {
 
     @FXML
     private void switchToSecondary() throws IOException {
-        App.setRoot("secondary");
+        App.setRoot("addTask");
     }
 
     private void switchToEdit() throws IOException {
@@ -179,9 +179,7 @@ public class PrimaryController {
         alert.showAndWait();
 
         if (alert.getResult() == ButtonType.YES) {
-
             Stage stage = (Stage) exitButton.getScene().getWindow();
-            // do what you have to do
             stage.close();
         }
     }

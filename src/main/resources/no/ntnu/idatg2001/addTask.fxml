@@ -54,10 +54,10 @@
         </ComboBox>
         <Button layoutX="390.0" layoutY="177.0" mnemonicParsing="false" onAction="#setTask" text="Add Task" />
       <Label fx:id="warningLabel" layoutX="378.0" layoutY="271.0" prefHeight="17.0" prefWidth="203.0" textFill="#e82b0a" />
-      <Label layoutX="333.0" layoutY="126.0" text="fields marked with * are mandatory">
+      <Label layoutX="333.0" layoutY="126.0" text="Fields marked with * are mandatory">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Button layoutX="390.0" layoutY="221.0" mnemonicParsing="false" onAction="#goBack" prefHeight="25.0" prefWidth="65.0" text="cancel" />
+      <Button layoutX="390.0" layoutY="221.0" mnemonicParsing="false" onAction="#goBack" prefHeight="25.0" prefWidth="65.0" text="Cancel" />
     </children>
 </Pane>
