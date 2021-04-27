@@ -46,6 +46,10 @@ public class App extends Application {
         scene.setRoot(loadFXML(fxml));
     }
 
+    static void setRoot(Parent root) throws IOException{
+        scene.setRoot(root);
+    }
+
     /**
      * Loads chosen FXML file.
      * @param fxml FXML file to be loaded.

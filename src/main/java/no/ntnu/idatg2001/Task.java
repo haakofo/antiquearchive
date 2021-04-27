@@ -154,7 +154,7 @@ public class Task implements Serializable {
         } else if (status.equalsIgnoreCase("Done")) {
             doingStatus = "Done";
         } else {
-            System.out.println("doing status not changed due to invalid input");
+            System.out.println("Doing status not changed due to invalid input");
         }
 
     }

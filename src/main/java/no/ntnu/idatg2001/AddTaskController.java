@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 
-public class SecondaryController {
+public class AddTaskController {
 
     /**
      * Creates the registry and a primary controller object so that the controller can be switched.
@@ -17,7 +17,6 @@ public class SecondaryController {
     PrimaryController primaryController = new PrimaryController();
     @FXML
     private TextField tf1;
-
 
     @FXML
     private TextField tf2;
@@ -72,7 +71,7 @@ public class SecondaryController {
                 e.printStackTrace();
             }
         } else
-            warningLabel.setText("required field missing");
+            warningLabel.setText("Required field missing");
 
 
     }

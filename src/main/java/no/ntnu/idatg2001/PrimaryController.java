@@ -7,6 +7,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -20,6 +22,8 @@ public class PrimaryController {
     TaskRegistry taskRegistry = new TaskRegistry();
     @FXML
     public Button exitButton;
+    @FXML
+    public Task taskToEdit;
     @FXML
     private TableView<Task> taskTableView;
     @FXML
@@ -50,6 +54,45 @@ public class PrimaryController {
         return tasksObservableList;
     }
 
+    private void switchToEdit() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("editTask.fxml"));
+        Parent root = fxmlLoader.load();
+        EditTaskController editTaskController = fxmlLoader.getController();
+        editTaskController.setEditTask(taskTableView.getSelectionModel().getSelectedItem());
+        App.setRoot(root);
+    }
+
+    @FXML
+    public void editTask() {
+        if (taskRegistry.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("There are no tasks to edit");
+            alert.show();
+            return;
+        }
+
+        taskToEdit = taskTableView.getSelectionModel().getSelectedItem();
+        if (taskToEdit != null) {
+            try {
+                switchToEdit();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            taskRegistry.removeSelectedTask(taskToEdit);
+            taskTableView.setItems(getTasks());
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("You need to select a task to edit");
+            alert.show();
+        }
+
+    }
+
+
+
+
     /**
      * This prints the tasks found in the registry and throws two exceptions.
      * @throws IOException
@@ -66,8 +109,8 @@ public class PrimaryController {
      * @throws IOException
      */
     @FXML
-    private void switchToSecondary() throws IOException {
-        App.setRoot("secondary");
+    private void switchToAddTask() throws IOException {
+        App.setRoot("addTask");
     }
 
     /**
@@ -77,7 +120,7 @@ public class PrimaryController {
      */
     @FXML
     void addTask(MouseEvent event) throws IOException {
-        switchToSecondary();
+        switchToAddTask();
     }
 
     /**
@@ -166,7 +209,7 @@ public class PrimaryController {
      * @param mouseEvent
      */
     public void exit(ActionEvent mouseEvent) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to exit program?", ButtonType.YES, ButtonType.NO);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to exit the program?", ButtonType.YES, ButtonType.NO);
         alert.showAndWait();
 
         if (alert.getResult() == ButtonType.YES) {
