@@ -1,4 +1,4 @@
-package no.ntnu.idatg2001;
+package no.antiquearchive;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -23,33 +23,33 @@ public class PrimaryController {
     @FXML
     public Button exitButton;
     @FXML
-    public Task taskToEdit;
+    public Item itemToEdit;
     @FXML
-    private TableView<Task> taskTableView;
+    private TableView<Item> taskTableView;
     @FXML
-    private TableColumn<Task, String> taskTitle;
+    private TableColumn<Item, String> taskTitle;
     @FXML
-    private TableColumn<Task, String> taskDescription;
+    private TableColumn<Item, String> taskDescription;
     @FXML
-    private TableColumn<Task, String> taskCategory;
+    private TableColumn<Item, String> taskCategory;
     @FXML
-    private TableColumn<Task, String> taskPriority;
+    private TableColumn<Item, String> taskPriority;
     @FXML
-    private TableColumn<Task, LocalDate> taskStartDate;
+    private TableColumn<Item, LocalDate> taskStartDate;
     @FXML
-    private TableColumn<Task, LocalDate> taskEndDate;
+    private TableColumn<Item, LocalDate> taskEndDate;
     @FXML
-    private TableColumn<Task, String> doingStatus;
+    private TableColumn<Item, String> doingStatus;
 
     /**
      * Gets the tasks form the registry and returns them in an Observable arraylist.
      * @return
      */
     @FXML
-    private ObservableList<Task> getTasks() {
+    private ObservableList<Item> getTasks() {
 
-        ObservableList<Task> tasksObservableList = FXCollections.observableArrayList();
-        tasksObservableList.addAll(TaskRegistry.taskArrayList);
+        ObservableList<Item> tasksObservableList = FXCollections.observableArrayList();
+        tasksObservableList.addAll(TaskRegistry.itemArrayList);
 
         return tasksObservableList;
     }
@@ -71,15 +71,15 @@ public class PrimaryController {
             return;
         }
 
-        taskToEdit = taskTableView.getSelectionModel().getSelectedItem();
-        if (taskToEdit != null) {
+        itemToEdit = taskTableView.getSelectionModel().getSelectedItem();
+        if (itemToEdit != null) {
             try {
                 switchToEdit();
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
-            taskRegistry.removeSelectedTask(taskToEdit);
+            taskRegistry.removeSelectedTask(itemToEdit);
             taskTableView.setItems(getTasks());
 
         } else {
@@ -131,13 +131,13 @@ public class PrimaryController {
     @FXML
     public void initialize() throws IOException, ClassNotFoundException {
         taskRegistry.readFromFile();
-        taskTitle.setCellValueFactory(new PropertyValueFactory<Task, String>("Title"));
-        taskDescription.setCellValueFactory(new PropertyValueFactory<Task, String>("Description"));
-        taskCategory.setCellValueFactory(new PropertyValueFactory<Task, String>("Category"));
-        taskPriority.setCellValueFactory(new PropertyValueFactory<Task, String>("Priority"));
-        taskStartDate.setCellValueFactory(new PropertyValueFactory<Task, LocalDate>("StartDate"));
-        taskEndDate.setCellValueFactory(new PropertyValueFactory<Task, LocalDate>("EndDate"));
-        doingStatus.setCellValueFactory(new PropertyValueFactory<Task, String>("doingStatus"));
+        taskTitle.setCellValueFactory(new PropertyValueFactory<Item, String>("Title"));
+        taskDescription.setCellValueFactory(new PropertyValueFactory<Item, String>("Description"));
+        taskCategory.setCellValueFactory(new PropertyValueFactory<Item, String>("Category"));
+        taskPriority.setCellValueFactory(new PropertyValueFactory<Item, String>("Priority"));
+        taskStartDate.setCellValueFactory(new PropertyValueFactory<Item, LocalDate>("StartDate"));
+        taskEndDate.setCellValueFactory(new PropertyValueFactory<Item, LocalDate>("EndDate"));
+        doingStatus.setCellValueFactory(new PropertyValueFactory<Item, String>("doingStatus"));
         taskTableView.refresh();
         taskTableView.setItems(getTasks());
 
@@ -155,7 +155,7 @@ public class PrimaryController {
             return;
         }
 
-        Task t1 = taskTableView.getSelectionModel().getSelectedItem();
+        Item t1 = taskTableView.getSelectionModel().getSelectedItem();
         if (t1 != null) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to remove task?", ButtonType.YES, ButtonType.NO);
             alert.showAndWait();
@@ -185,7 +185,7 @@ public class PrimaryController {
             return;
         }
 
-        Task t1 = taskTableView.getSelectionModel().getSelectedItem();
+        Item t1 = taskTableView.getSelectionModel().getSelectedItem();
         if (t1 != null) {
             if (t1.getDoingStatus().equalsIgnoreCase("toDo")) {
                 taskRegistry.changeDoingStatus("done", t1);

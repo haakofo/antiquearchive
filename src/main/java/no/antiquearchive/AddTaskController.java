@@ -1,4 +1,4 @@
-package no.ntnu.idatg2001;
+package no.antiquearchive;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -63,7 +63,7 @@ public class AddTaskController {
         LocalDate endDate = datePicker2.getValue();
 
         if (!tf1.getText().equals("") && comboBox1.getValue() != null && datePicker2.getValue() != null) {
-            taskRegistry.addTask(new Task(title, priority, description, category, startDate, endDate));
+            taskRegistry.addTask(new Item(title, priority, description, category, startDate, endDate));
 
             try {
                 switchToPrimary(event);

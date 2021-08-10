@@ -1,5 +1,5 @@
-import no.ntnu.idatg2001.Task;
-import no.ntnu.idatg2001.TaskRegistry;
+import no.antiquearchive.Item;
+import no.antiquearchive.TaskRegistry;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +13,7 @@ public class RegistryTest
      * Setting up the registry to be used with the tests.
      */
     private static TaskRegistry t1;
-    private static Task task1;
+    private static Item item1;
 
     /**
      * This simple method creates the reigstry to be used with the tests as well as a Task.Then adds the tasks.
@@ -22,8 +22,8 @@ public class RegistryTest
      static void initialize()
      {
          t1 = new TaskRegistry();
-         task1 = new Task("Test Oppgave", "High", "Hei, jeg er en kul test!", "Tester og slik", LocalDate.of(2021, 4, 10), LocalDate.of(2021, 5, 6));
-         t1.addTask(task1);
+         item1 = new Item("Test Oppgave", "High", "Hei, jeg er en kul test!", "Tester og slik", LocalDate.of(2021, 4, 10), LocalDate.of(2021, 5, 6));
+         t1.addTask(item1);
      }
 
     /**
@@ -32,7 +32,7 @@ public class RegistryTest
     @Test
     void addTestPositive()
     {
-        assertEquals("Test Oppgave",task1.getTitle());
+        assertEquals("Test Oppgave", item1.getModelAlias());
     }
 
     /**
@@ -41,7 +41,7 @@ public class RegistryTest
     @Test
     void addTestNegative()
     {
-        assertNotEquals("Ikke riktig tittel!", task1.getTitle());
+        assertNotEquals("Ikke riktig tittel!", item1.getModelAlias());
     }
 
     /**
@@ -50,7 +50,7 @@ public class RegistryTest
     @Test
     void removeTestPositive()
     {
-        t1.removeSelectedTask(task1);
+        t1.removeSelectedTask(item1);
         assertTrue(t1.isEmpty());
     }
 }

@@ -1,11 +1,7 @@
-package no.ntnu.idatg2001;
+package no.antiquearchive;
 
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 
 import java.io.IOException;
@@ -32,10 +28,10 @@ public class EditTaskController {
     @FXML
     private DatePicker finishDatePicker;
 
-    private Task task;
+    private Item item;
 
-    void setEditTask(Task task) {
-        this.task = task;
+    void setEditTask(Item item) {
+        this.item = item;
     }
 
     String priority;
@@ -49,7 +45,7 @@ public class EditTaskController {
         LocalDate startDate = startDatePicker.getValue();
         LocalDate endDate = finishDatePicker.getValue();
         if (!titleTextField.getText().equals("") && priorityComboBox.getValue() != null && finishDatePicker.getValue() != null) {
-            taskRegistry.addTask(new Task(title, priority, description, category, startDate, endDate));
+            taskRegistry.addTask(new Item(title, priority, description, category, startDate, endDate));
             try {
                 switchToPrimary();
             } catch (IOException e) {
@@ -65,7 +61,7 @@ public class EditTaskController {
 
     @FXML
     private void cancelEdit(){
-        taskRegistry.addTask(task);
+        taskRegistry.addTask(item);
         try {
             switchToPrimary();
         } catch (IOException e) {
@@ -87,15 +83,15 @@ public class EditTaskController {
     public void initialize() {
         // Must use run later, since variable is passed after initial load.
         Platform.runLater(() -> {
-            if (task != null) {
+            if (item != null) {
                 //TODO: Fix her
-                titleTextField.setText(task.getTitle());
-                descriptionTextField.setText(task.getDescription());
-                categoryTextField.setText(task.getCategory());
-                int comboBoxIndex = priorityComboBox.getItems().indexOf(task.getPriority());
+                titleTextField.setText(item.getModelAlias());
+                descriptionTextField.setText(item.getDescription());
+                categoryTextField.setText(item.getCategory());
+                int comboBoxIndex = priorityComboBox.getItems().indexOf(item.getPriority());
                 priorityComboBox.getSelectionModel().select(comboBoxIndex);
-                startDatePicker.setValue(task.getStartDate());
-                finishDatePicker.setValue(task.getEndDate());
+                startDatePicker.setValue(item.getStartDate());
+                finishDatePicker.setValue(item.getEndDate());
 
             }
         });

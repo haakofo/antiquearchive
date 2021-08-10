@@ -1,4 +1,4 @@
-package no.ntnu.idatg2001;
+package no.antiquearchive;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -26,7 +26,7 @@ public class FileReadWrite {
      * This methods takes the arraylist and tries to write it to the json file and throws and Exception if it fails.
      * @param arrayList
      */
-    public static void writeToFile(List<Task> arrayList) {
+    public static void writeToFile(List<Item> arrayList) {
 
         try {
 
@@ -50,13 +50,13 @@ public class FileReadWrite {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public static List<Task> readFromFile() throws IOException, ClassNotFoundException {
+    public static List<Item> readFromFile() throws IOException, ClassNotFoundException {
 
 
         Reader reader = Files.newBufferedReader(Paths.get("objectFile.json"));
 
 
-        return gson.fromJson(reader, new TypeToken<List<Task>>() {
+        return gson.fromJson(reader, new TypeToken<List<Item>>() {
         }.getType());
 
 

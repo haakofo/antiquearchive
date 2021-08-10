@@ -1,4 +1,4 @@
-package no.ntnu.idatg2001;
+package no.antiquearchive;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -9,25 +9,25 @@ public class TaskRegistry {
     /**
      * Sets up a static arrayList for the registry.
      */
-    static ArrayList<Task> taskArrayList = new ArrayList<>();
+    static ArrayList<Item> itemArrayList = new ArrayList<>();
 
     /**
      * Method to add tasks, takes a task and adds it to the registry and writes it to the file.
-     * @param task task to be added.
+     * @param item task to be added.
      */
-    public void addTask(Task task) {
-        taskArrayList.add(task);
-        FileReadWrite.writeToFile(taskArrayList);
+    public void addTask(Item item) {
+        itemArrayList.add(item);
+        FileReadWrite.writeToFile(itemArrayList);
 
     }
 
     /**
      * Method that removes a task. Takes in the specific task to be removed.
-     * @param taskRemove task object to remove.
+     * @param itemRemove task object to remove.
      */
-    public void removeSelectedTask(Task taskRemove) {
-        taskArrayList.remove(taskRemove);
-        FileReadWrite.writeToFile(taskArrayList);
+    public void removeSelectedTask(Item itemRemove) {
+        itemArrayList.remove(itemRemove);
+        FileReadWrite.writeToFile(itemArrayList);
     }
 
     /**
@@ -35,7 +35,7 @@ public class TaskRegistry {
      * @return returns true if the list is empty and false if it isn't.
      */
     public boolean isEmpty() {
-        if (taskArrayList.isEmpty()) {
+        if (itemArrayList.isEmpty()) {
             return true;
         } else
             return false;
@@ -46,7 +46,7 @@ public class TaskRegistry {
      */
     public void printData() {
 
-        taskArrayList.forEach(s -> System.out.println(s.toString()));
+        itemArrayList.forEach(s -> System.out.println(s.toString()));
     }
 
     /**
@@ -55,17 +55,17 @@ public class TaskRegistry {
      * @throws ClassNotFoundException
      */
     public void readFromFile() throws IOException, ClassNotFoundException {
-        taskArrayList = (ArrayList<Task>) FileReadWrite.readFromFile();
+        itemArrayList = (ArrayList<Item>) FileReadWrite.readFromFile();
     }
 
     /**
      * Changes the "doing" status of the task.
      * @param status which status to be set.
-     * @param givenTask task that will get a new status.
+     * @param givenItem task that will get a new status.
      */
-    public void changeDoingStatus(String status, Task givenTask) {
-        givenTask.setDoingStatus(status);
-        FileReadWrite.writeToFile(taskArrayList);
+    public void changeDoingStatus(String status, Item givenItem) {
+        givenItem.setDoingStatus(status);
+        FileReadWrite.writeToFile(itemArrayList);
 
     }
 

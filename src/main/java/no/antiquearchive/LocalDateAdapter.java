@@ -1,4 +1,4 @@
-package no.ntnu.idatg2001;
+package no.antiquearchive;
 
 import com.google.gson.*;
 
